@@ -1,6 +1,75 @@
+# =============================================================================
+# Application artifacts (original sample + local builds)
+# =============================================================================
 *.pyc
+__pycache__/
 project.lock.json
 bin/
 obj/
 .vs/
 node_modules/
+
+# =============================================================================
+# OS / editor
+# =============================================================================
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/launch.json
+
+# =============================================================================
+# Secrets and local environment — never commit credentials
+# =============================================================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+kubeconfig
+*.kubeconfig
+.aws/
+
+# =============================================================================
+# Terraform
+# State, providers cache, and variable files with real values stay local.
+# Commit .terraform.lock.hcl (created after terraform init) for reproducible
+# provider versions. Commit *.tfvars.example, not live *.tfvars.
+# =============================================================================
+.terraform/
+.terraform.lock.hcl.bak
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+*.tfvars
+!*.tfvars.example
+
+# =============================================================================
+# Helm
+# =============================================================================
+*.tgz
+charts/*.tgz
+tmpcharts/
+
+# =============================================================================
+# Kubernetes / GitOps local noise
+# =============================================================================
+*.orig
+*.bak
+
+# =============================================================================
+# Logs and coverage
+# =============================================================================
+*.log
+coverage/
+.nyc_output/
