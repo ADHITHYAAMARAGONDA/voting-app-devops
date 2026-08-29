@@ -69,3 +69,9 @@ variable "node_max_size" {
   type        = number
   default     = 2
 }
+
+variable "ecr_repositories" {
+  description = "ECR repository names for app images we build"
+  type        = list(string)
+  default     = ["vote", "result", "worker"]
+}
