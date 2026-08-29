@@ -1,0 +1,4 @@
+aws_region   = "ap-south-1"
+environment  = "dev"
+project_name = "voting-app"
+cluster_name = "voting-app-eks"
