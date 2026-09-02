@@ -3,5 +3,5 @@ kind: Namespace
 metadata:
   name: voting
   labels:
-  app.kubernetes.io/name: voting-app
-  app.kubernetes.io/part-of: voting-app
+    app.kubernetes.io/name: voting-app
+    app.kubernetes.io/part-of: voting-app
