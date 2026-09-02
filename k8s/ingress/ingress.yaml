@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: voting-app-ingress
+  namespace: voting
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: voting-app
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /vote
+            pathType: Prefix
+            backend:
+              service:
+                name: vote
+                port:
+                  number: 80
+          - path: /result
+            pathType: Prefix
+            backend:
+              service:
+                name: result
+                port:
+                  number: 80

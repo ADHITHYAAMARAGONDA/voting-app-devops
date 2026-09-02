@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: result
+  namespace: voting
+  labels:
+    app.kubernetes.io/name: voting-app
+    app.kubernetes.io/component: result
+    app.kubernetes.io/part-of: voting-app
+spec:
+  type: ClusterIP
+  selector:
+    app: result
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4000
+      protocol: TCP

@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: voting-project
+  namespace: argocd
+spec:
+  description: Voting app project for EKS deployment
+  sourceRepos:
+    - "https://github.com/ADHITHYAAMARAGONDA/voting-app-devops.git"
+  destinations:
+    - namespace: voting
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace

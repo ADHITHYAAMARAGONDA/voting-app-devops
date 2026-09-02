@@ -5,37 +5,27 @@ metadata:
   namespace: voting
   labels:
     app.kubernetes.io/name: voting-app
-    app.kubernetes.io/component: cache
+    app.kubernetes.io/component: redis
     app.kubernetes.io/part-of: voting-app
 spec:
   replicas: 1
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
       app: redis
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
         app: redis
-        app.kubernetes.io/name: voting-app
-        app.kubernetes.io/component: cache
     spec:
       containers:
         - name: redis
           image: redis:7.2-alpine
           imagePullPolicy: IfNotPresent
           ports:
-            - name: redis
-              containerPort: 6379
-          command:
-            - redis-server
-            - --appendonly
-            - "no"
-            - --save
-            - ""
-            - --appendfsync
-            - "no"
+            - containerPort: 6379
+              name: redis
           readinessProbe:
             exec:
               command:
