@@ -75,3 +75,22 @@ variable "ecr_repositories" {
   type        = list(string)
   default     = ["vote", "result", "worker"]
 }
+
+
+variable "db_name" {
+  description = "PostgreSQL database name"
+  type        = string
+  default     = "postgres"
+}
+
+variable "db_username" {
+  description = "PostgreSQL master username"
+  type        = string
+  default     = "postgres"
+}
+
+variable "db_instance_class" {
+  description = "RDS instance class (keep small for the demo)"
+  type        = string
+  default     = "db.t3.micro"
+}
