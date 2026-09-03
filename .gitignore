@@ -42,6 +42,7 @@ kubeconfig
 .terraform.lock.hcl.bak
 *.tfstate
 *.tfstate.*
+tfplan
 *.tfplan
 crash.log
 crash.*.log

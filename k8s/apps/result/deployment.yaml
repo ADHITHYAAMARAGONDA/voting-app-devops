@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: result
-          image: 123456789012.dkr.ecr.ap-south-1.amazonaws.com/result:latest
+          image: 841162701696.dkr.ecr.ap-south-1.amazonaws.com/voting-app/result:rds-config
           imagePullPolicy: Always
           ports:
             - containerPort: 4000
