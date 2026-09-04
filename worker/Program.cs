@@ -74,7 +74,7 @@ namespace Worker
             var username = Environment.GetEnvironmentVariable("POSTGRES_USER") ?? "postgres";
             var password = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD") ?? "postgres";
 
-            return $"Host={host};Port={port};Database={database};Username={username};Password={password};";
+            return $"Host={host};Port={port};Database={database};Username={username};Password={password};Ssl Mode=Require;Trust Server Certificate=true;";
         }
 
         private static NpgsqlConnection OpenDbConnection(string connectionString)

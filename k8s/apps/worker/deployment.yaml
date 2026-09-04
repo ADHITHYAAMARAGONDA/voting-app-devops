@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: worker
-          image: 841162701696.dkr.ecr.ap-south-1.amazonaws.com/voting-app/worker:rds-config
+          image: 841162701696.dkr.ecr.ap-south-1.amazonaws.com/voting-app/worker:rds-config-v2
           imagePullPolicy: Always
           env:
             - name: REDIS_HOST
