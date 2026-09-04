@@ -68,6 +68,7 @@ data "aws_iam_policy_document" "alb_controller" {
       "elasticloadbalancing:DescribeLoadBalancers",
       "elasticloadbalancing:DescribeLoadBalancerAttributes",
       "elasticloadbalancing:DescribeListeners",
+      "elasticloadbalancing:DescribeListenerAttributes",
       "elasticloadbalancing:DescribeListenerCertificates",
       "elasticloadbalancing:DescribeSSLPolicies",
       "elasticloadbalancing:DescribeRules",
