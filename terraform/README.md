@@ -1,4 +1,6 @@
-# Terraform — AWS infrastructure
+kubectl get crd appprojects.argoproj.io
+kubectl get applications -n argocd
+kubectl get pods -n argocd# Terraform — AWS infrastructure
 
 This directory will hold reusable Terraform that provisions the AWS footprint for the voting app.
 
