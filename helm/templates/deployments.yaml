@@ -41,6 +41,12 @@ spec:
           image: "{{ .Values.images.result.repository }}:{{ .Values.images.result.tag }}"
           imagePullPolicy: Always
           ports: [{ name: http, containerPort: 4000 }]
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: voting-config
+                  key: RESULT_PORT
           envFrom:
             - configMapRef: { name: voting-config }
             - secretRef: { name: {{ .Values.database.secretName }} }
