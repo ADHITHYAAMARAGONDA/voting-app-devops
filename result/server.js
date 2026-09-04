@@ -2,9 +2,10 @@ var express = require('express'),
     async = require('async'),
     { Pool } = require('pg'),
     cookieParser = require('cookie-parser'),
+  path = require('path'),
     app = express(),
     server = require('http').Server(app),
-    io = require('socket.io')(server);
+  io = require('socket.io')(server, { path: '/result/socket.io' });
 
 var port = process.env.PORT || 4000;
 
@@ -69,9 +70,9 @@ function collectVotesFromResult(result) {
 
 app.use(cookieParser());
 app.use(express.urlencoded());
-app.use(express.static(__dirname + '/views'));
+app.use('/result', express.static(__dirname + '/views'));
 
-app.get('/', function (req, res) {
+app.get(['/','/result','/result/'], function (req, res) {
   res.sendFile(path.resolve(__dirname + '/views/index.html'));
 });
 
