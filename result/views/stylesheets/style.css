@@ -10,7 +10,7 @@ html,body{
   font-family: 'Open Sans';
 }
 body{
-  opacity:0;
+  opacity:1;
   transition: all 1s linear;
 }
 

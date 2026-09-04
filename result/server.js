@@ -23,7 +23,8 @@ var pool = new Pool({
   port: Number(process.env.POSTGRES_PORT || 5432),
   database: process.env.POSTGRES_DB || 'postgres',
   user: process.env.POSTGRES_USER || 'postgres',
-  password: process.env.POSTGRES_PASSWORD || 'postgres'
+  password: process.env.POSTGRES_PASSWORD || 'postgres',
+  ssl: { rejectUnauthorized: false }
 });
 
 async.retry(
@@ -46,7 +47,16 @@ async.retry(
 );
 
 function getVotes(client) {
-  client.query('SELECT vote, COUNT(id) AS count FROM votes GROUP BY vote', [], function(err, result) {
+  client.query(`CREATE TABLE IF NOT EXISTS votes (
+    id VARCHAR(255) NOT NULL UNIQUE,
+    vote VARCHAR(255) NOT NULL
+  )`, [], function(createErr) {
+    if (createErr) {
+      console.error("Error creating votes table: " + createErr);
+      return setTimeout(function() { getVotes(client); }, 1000);
+    }
+
+    client.query('SELECT vote, COUNT(id) AS count FROM votes GROUP BY vote', [], function(err, result) {
     if (err) {
       console.error("Error performing query: " + err);
     } else {
@@ -55,6 +65,7 @@ function getVotes(client) {
     }
 
     setTimeout(function() {getVotes(client) }, 1000);
+    });
   });
 }
 
