@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: vote
-          image: 841162701696.dkr.ecr.ap-south-1.amazonaws.com/voting-app/vote:initial
+          image: 841162701696.dkr.ecr.ap-south-1.amazonaws.com/voting-app/vote:initial-v2
           imagePullPolicy: Always
           ports:
             - containerPort: 80
