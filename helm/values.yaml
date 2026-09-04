@@ -1,0 +1,62 @@
+nameOverride: ""
+fullnameOverride: ""
+
+images:
+  vote:
+    repository: 841162701696.dkr.ecr.ap-south-1.amazonaws.com/voting-app/vote
+    tag: initial-v2
+  result:
+    repository: 841162701696.dkr.ecr.ap-south-1.amazonaws.com/voting-app/result
+    tag: rds-config-v2
+  worker:
+    repository: 841162701696.dkr.ecr.ap-south-1.amazonaws.com/voting-app/worker
+    tag: rds-config-v2
+  redis:
+    repository: redis
+    tag: 7.2-alpine
+
+replicaCount:
+  vote: 2
+  result: 2
+  worker: 2
+  redis: 1
+
+resources:
+  vote:
+    requests: { cpu: 100m, memory: 128Mi }
+    limits: { cpu: 250m, memory: 256Mi }
+  result:
+    requests: { cpu: 100m, memory: 128Mi }
+    limits: { cpu: 300m, memory: 256Mi }
+  worker:
+    requests: { cpu: 100m, memory: 128Mi }
+    limits: { cpu: 300m, memory: 256Mi }
+  redis:
+    requests: { cpu: 100m, memory: 128Mi }
+    limits: { cpu: 250m, memory: 256Mi }
+
+database:
+  host: voting-app-dev-postgres.c90g46smyke5.ap-south-1.rds.amazonaws.com
+  port: "5432"
+  name: postgres
+  user: postgres
+  secretName: voting-secrets
+  secretStoreName: aws-secretsmanager
+  secretKey: voting-app-dev-rds
+
+app:
+  optionA: Cats
+  optionB: Dogs
+  resultPort: "4000"
+  port: "80"
+
+hpa:
+  vote: { minReplicas: 2, maxReplicas: 6, cpuUtilization: 70 }
+  result: { minReplicas: 2, maxReplicas: 5, cpuUtilization: 70 }
+
+ingress:
+  enabled: true
+  className: alb
+  groupName: voting-app
+  scheme: internet-facing
+  targetType: ip

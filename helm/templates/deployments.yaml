@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vote
+  labels:
+    {{- include "voting-app.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount.vote }}
+  selector:
+    matchLabels: { app: vote }
+  template:
+    metadata:
+      labels: { app: vote }
+    spec:
+      containers:
+        - name: vote
+          image: "{{ .Values.images.vote.repository }}:{{ .Values.images.vote.tag }}"
+          imagePullPolicy: Always
+          ports: [{ name: http, containerPort: 80 }]
+          envFrom: [{ configMapRef: { name: voting-config } }]
+          readinessProbe: { httpGet: { path: /, port: 80 }, initialDelaySeconds: 10, periodSeconds: 10 }
+          livenessProbe: { httpGet: { path: /, port: 80 }, initialDelaySeconds: 20, periodSeconds: 20 }
+          resources: {{- toYaml .Values.resources.vote | nindent 12 }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result
+  labels:
+    {{- include "voting-app.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount.result }}
+  selector:
+    matchLabels: { app: result }
+  template:
+    metadata:
+      labels: { app: result }
+    spec:
+      containers:
+        - name: result
+          image: "{{ .Values.images.result.repository }}:{{ .Values.images.result.tag }}"
+          imagePullPolicy: Always
+          ports: [{ name: http, containerPort: 4000 }]
+          envFrom:
+            - configMapRef: { name: voting-config }
+            - secretRef: { name: {{ .Values.database.secretName }} }
+          readinessProbe: { httpGet: { path: /, port: 4000 }, initialDelaySeconds: 10, periodSeconds: 10 }
+          livenessProbe: { httpGet: { path: /, port: 4000 }, initialDelaySeconds: 20, periodSeconds: 20 }
+          resources: {{- toYaml .Values.resources.result | nindent 12 }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  labels:
+    {{- include "voting-app.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount.worker }}
+  selector:
+    matchLabels: { app: worker }
+  template:
+    metadata:
+      labels: { app: worker }
+    spec:
+      containers:
+        - name: worker
+          image: "{{ .Values.images.worker.repository }}:{{ .Values.images.worker.tag }}"
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef: { name: voting-config }
+            - secretRef: { name: {{ .Values.database.secretName }} }
+          resources: {{- toYaml .Values.resources.worker | nindent 12 }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    {{- include "voting-app.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount.redis }}
+  selector:
+    matchLabels: { app: redis }
+  strategy: { type: Recreate }
+  template:
+    metadata:
+      labels: { app: redis }
+    spec:
+      containers:
+        - name: redis
+          image: "{{ .Values.images.redis.repository }}:{{ .Values.images.redis.tag }}"
+          ports: [{ name: redis, containerPort: 6379 }]
+          readinessProbe: { exec: { command: [sh, -c, "redis-cli ping | grep PONG"] }, initialDelaySeconds: 5 }
+          livenessProbe: { exec: { command: [redis-cli, ping] }, initialDelaySeconds: 10 }
+          resources: {{- toYaml .Values.resources.redis | nindent 12 }}

@@ -1,0 +1,9 @@
+replicaCount:
+  vote: 3
+  result: 3
+  worker: 3
+  redis: 1
+
+hpa:
+  vote: { minReplicas: 3, maxReplicas: 10, cpuUtilization: 70 }
+  result: { minReplicas: 3, maxReplicas: 10, cpuUtilization: 70 }

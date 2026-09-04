@@ -1,0 +1,13 @@
+images:
+  vote:
+    tag: initial-v2
+  result:
+    tag: rds-config-v2
+  worker:
+    tag: rds-config-v2
+
+replicaCount:
+  vote: 2
+  result: 2
+  worker: 2
+  redis: 1
