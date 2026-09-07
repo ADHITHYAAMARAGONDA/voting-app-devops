@@ -1,10 +1,10 @@
 images:
   vote:
-    tag: initial-v2
+    tag: 348e1b3fc178cedbfdfc2d519e3893d24ff094a8
   result:
-    tag: rds-config-v2
+    tag: a4f17807b9d84837da6c5c67d53f47318575c3d4
   worker:
-    tag: rds-config-v2
+    tag: 57bd68c22ae7ea1c81ae0079c8bc8d2d1d3131aa
 
 replicaCount:
   vote: 2
