@@ -6,6 +6,7 @@ on:
     paths:
       - result/**
       - .github/workflows/call-docker-build-result.yaml
+
   pull_request:
     branches: [main]
     paths:
@@ -19,22 +20,41 @@ permissions:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Show OIDC context
         if: github.event_name == 'push'
         run: |
           echo "repository=${{ github.repository }}"
           echo "ref=${{ github.ref }}"
           echo "event=${{ github.event_name }}"
+
+      - name: Debug OIDC token claims
+        if: github.event_name == 'push'
+        env:
+          AUDIENCE: sts.amazonaws.com
+        run: |
+          TOKEN_JSON=$(curl -s \
+            -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=$AUDIENCE")
+
+          ID_TOKEN=$(echo "$TOKEN_JSON" | jq -r '.value')
+
+          echo "$ID_TOKEN" | cut -d '.' -f2 | base64 -d 2>/dev/null | jq '{sub, aud, repository, repository_id, repository_owner, repository_owner_id, ref}'
+
       - uses: aws-actions/configure-aws-credentials@v4
         if: github.event_name == 'push'
         with:
           role-to-assume: arn:aws:iam::841162701696:role/github-actions-ecr-push
           aws-region: ap-south-1
+
       - uses: aws-actions/amazon-ecr-login@v2
         if: github.event_name == 'push'
+
       - uses: docker/setup-buildx-action@v3
+
       - uses: docker/build-push-action@v6
         with:
           context: ./result
