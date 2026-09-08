@@ -1,16 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: voting-app
+  name: voting-helm-dev
   namespace: argocd
 spec:
   project: voting-project
   source:
     repoURL: https://github.com/ADHITHYAAMARAGONDA/voting-app-devops.git
     targetRevision: main
-    path: k8s
-    directory:
-      recurse: true
+    path: helm
   destination:
     server: https://kubernetes.default.svc
     namespace: voting
