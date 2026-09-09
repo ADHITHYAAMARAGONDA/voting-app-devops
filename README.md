@@ -367,20 +367,23 @@ This demonstrates awareness of real-world cloud cost management.
 
 ---
 
-## Important Notes
+## Summary
 
-This project is intentionally designed around the core DevOps principles a recruiter or hiring manager wants to see:
-- automation
-- repeatability
-- cloud deployment
-- cluster orchestration
-- pipeline-driven delivery
-- observability
-- GitOps workflow
+This project demonstrates a complete DevOps workflow end to end:
+- infrastructure provisioned as code (Terraform)
+- containerized microservices deployed to Kubernetes (EKS)
+- automated, path-scoped CI pipelines with OIDC-authenticated image publishing
+- GitOps-based continuous delivery via ArgoCD
+- externalized secrets management (no credentials in version control)
+- cluster and workload observability via Prometheus and Grafana
+- cost-aware infrastructure operation
 
-It is not just a simple app demo; it is a cloud-native deployment project built to communicate strong DevOps capability.
+It goes beyond a simple app deployment — the focus throughout is the platform and delivery layer surrounding the application, not the application code itself.
 
+ 
 ---
+
+This project uses production patterns (IaC, GitOps, IRSA, secrets externalization) at portfolio scale and cost. Deliberate simplifications for cost: single NAT gateway (no multi-AZ egress redundancy), single-AZ RDS with short backup retention, no TLS on the ALB yet. In a real production environment these would be multi-AZ, longer retention with deletion protection enabled, and HTTPS-only.
 
 ## Future Enhancements
 
