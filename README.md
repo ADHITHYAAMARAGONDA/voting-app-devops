@@ -345,6 +345,8 @@ This demonstrates awareness of real-world cloud cost management.
 ### Local validation
 - Docker Compose app running
 - Vote app on localhost:8080
+- <img width="1887" height="944" alt="Screenshot 2026-08-28 112528" src="https://github.com/user-attachments/assets/244a1d25-5463-476a-baeb-cd609a200daa" />
+
 - Result app on localhost:8081
 - `docker ps` output
 
