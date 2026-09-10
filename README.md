@@ -352,6 +352,10 @@ This demonstrates awareness of real-world cloud cost management.
 - `docker ps` output
  <img width="964" height="324" alt="image" src="https://github.com/user-attachments/assets/db7b9675-adf2-468b-899f-6c02ebfed211" />
 
+ - Terraform Plan Output
+<img width="943" height="714" alt="Screenshot 2026-09-03 163207" src="https://github.com/user-attachments/assets/f22a9344-d53a-4e0b-a3c9-c904aabe199b" />
+
+
 
 ### Kubernetes validation
 - `kubectl get nodes`
