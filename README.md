@@ -355,6 +355,11 @@ This demonstrates awareness of real-world cloud cost management.
  - Terraform Plan Output
 <img width="943" height="714" alt="Screenshot 2026-09-03 163207" src="https://github.com/user-attachments/assets/f22a9344-d53a-4e0b-a3c9-c904aabe199b" />
 
+### Github Actions
+-workflow
+<img width="1330" height="470" alt="Screenshot 2026-09-10 163033" src="https://github.com/user-attachments/assets/564a90d6-1ee3-4d8c-a7f5-58685dacb05b" />
+
+<img width="1919" height="839" alt="Screenshot 2026-09-10 163058" src="https://github.com/user-attachments/assets/f91b0945-eac0-44d4-8e81-081c0d01cfae" />
 
 
 ### Kubernetes validation
