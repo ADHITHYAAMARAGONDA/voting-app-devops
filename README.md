@@ -438,4 +438,4 @@ cluster observability.
 
 This project reflects a practical, production-style DevOps workflow for a microservices application. It combines infrastructure provisioning, Kubernetes deployment, issue tracking through GitOps, monitoring, and cloud-native operations into one portfolio-ready solution.
 
-The project is suitable for demonstrating strong hands-on capability for DevOps, platform engineering, SRE, and cloud-native roles.
+ 
