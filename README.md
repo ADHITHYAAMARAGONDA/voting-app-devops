@@ -343,28 +343,58 @@ This demonstrates awareness of real-world cloud cost management.
 ## Screenshot Checklist
 
 ### Local validation
-- Docker Compose app running
 - Vote app on localhost:8080
 - <img width="1887" height="944" alt="Screenshot 2026-08-28 112528" src="https://github.com/user-attachments/assets/244a1d25-5463-476a-baeb-cd609a200daa" />
 
 - Result app on localhost:8081
+- <img width="1906" height="955" alt="Screenshot 2026-08-28 112547" src="https://github.com/user-attachments/assets/393199d1-f1d1-468e-ae28-a19641dabbaa" />
+
 - `docker ps` output
+- <img width="964" height="324" alt="image" src="https://github.com/user-attachments/assets/db7b9675-adf2-468b-899f-6c02ebfed211" />
+
 
 ### Kubernetes validation
 - `kubectl get nodes`
+-  <img width="921" height="225" alt="image" src="https://github.com/user-attachments/assets/fb6f54f7-9422-4e6d-9cf0-0265cdd542dd" />
+
+
 - `kubectl get pods -A`
+- <img width="971" height="786" alt="image" src="https://github.com/user-attachments/assets/ca9e8336-73ea-4410-9ea6-7b9afe1a9a3a" />
+- <img width="976" height="828" alt="image" src="https://github.com/user-attachments/assets/c2b4417f-0b8c-45fb-9142-20fc3518ffa9" />
+
+
+- 
 - ingress output showing the ALB hostname
 - `/vote` application URL on AWS
+- <img width="1622" height="881" alt="image" src="https://github.com/user-attachments/assets/bd4371a0-a595-4cf5-978d-55927371a5a8" />
+
+- 
 - `/result` application URL on AWS
+- <img width="1670" height="790" alt="image" src="https://github.com/user-attachments/assets/ce399958-08a9-429e-8142-3d8b3345ed1c" />
+
 
 ### GitOps validation
-- ArgoCD app health
+
 - ArgoCD sync status
+- <img width="1366" height="263" alt="image" src="https://github.com/user-attachments/assets/e7c2bb18-ae91-4ce9-aa25-4e33f02b5bf2" />
+
+<img width="1725" height="554" alt="image" src="https://github.com/user-attachments/assets/967a2553-0805-4f7c-9b99-d2f1089c135f" />
+
+<img width="1731" height="680" alt="image" src="https://github.com/user-attachments/assets/2d7c5f7d-f3be-49f7-a88e-9665ba39d8f0" />
+
+<img width="1728" height="857" alt="image" src="https://github.com/user-attachments/assets/d1fcacb5-63ee-43e2-86d8-80184557f7cf" />
+
+
+
+
 - project and application definitions
 
 ### Monitoring validation
-- Prometheus targets page
+- Prometheus 
+- <img width="1909" height="878" alt="image" src="https://github.com/user-attachments/assets/c52a55b2-3dfc-40c6-88c0-055f7f26bb0c" />
+
 - Grafana dashboard page
+- 
 - Kubernetes health dashboards
 
 ---
