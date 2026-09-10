@@ -402,6 +402,12 @@ This demonstrates awareness of real-world cloud cost management.
 - Prometheus 
  <img width="1909" height="878" alt="image" src="https://github.com/user-attachments/assets/c52a55b2-3dfc-40c6-88c0-055f7f26bb0c" />
 
+ 
+ - Grafana K8s Dashboard
+<img width="1547" height="890" alt="Screenshot 2026-09-08 171730" src="https://github.com/user-attachments/assets/de79d522-59f1-45ab-a4a8-0d3d0594661d" />
+
+  
+
 ---
 
 ## Summary
